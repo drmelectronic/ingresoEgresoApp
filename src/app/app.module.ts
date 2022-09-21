@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     NgbModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    SweetAlert2Module.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
