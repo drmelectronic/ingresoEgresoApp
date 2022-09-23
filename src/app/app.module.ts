@@ -20,6 +20,9 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import {StoreModule} from "@ngrx/store";
+import {appReducer} from "./app.reducer";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 
 @NgModule({
@@ -43,7 +46,12 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
     SweetAlert2Module.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    StoreModule.forRoot(appReducer),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    })
   ],
   providers: [
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
